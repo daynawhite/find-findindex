@@ -27,13 +27,13 @@ const arrayOfPersons = [
     {
         firstName: "Jane",
         lastName: "Doe",
-        birthdate: "Jan 5, 1925",
+        birthdate: "Jan 5, 2019",
         gender: "female"
     },
     {
         firstName: "John",
         lastName: "Doe",
-        birthdate: "Dec 5, 1926",
+        birthdate: "Dec 5, 1996",
         gender: "male"
     },
     {
@@ -45,7 +45,7 @@ const arrayOfPersons = [
     {
         firstName: "George",
         lastName: "Wilson",
-        birthdate: "Nov 9, 1948",
+        birthdate: "Nov 9, 2001",
         gender: "male"
     }
 ]
@@ -56,7 +56,7 @@ function birthInfo(arrayOfPersons) {
     for (let x of arrayOfPersons) {
         let bDay = x.birthdate
         text += x
-        if (bDay.charAt(bDay.length-1) % 2 ==1){
+        if (bDay.charAt(bDay.length-1) % 2 !== 0){
         console.log(bDay)
         }
     }
@@ -74,7 +74,44 @@ const maleOnly = arrayOfPersons.filter(person => (person.gender == 'male'))
 console.log(maleOnly)
 
 // Create a function that returns true if the value of birthDate is before Jan 1, 1990.
-function millenials(person) {
-    if person.birthDate.
-
+// THIS ONE STUMPED ME.  I WANT TO KNOW HOW TO PERFORM THE IF...THEN FOR A PARTICULAR OBJECT IN THE ARRAY (RATHER THAN FILTERING WITH THE FOR...OF LOOP), 
+// BUT I DON'T KNOW HOW TO SPECIFY AN OBJECT.
+function olderThanGenZ(arrayOfPersons) {
+    let text = ''
+    for (let x of arrayOfPersons) {
+        let name = x.firstName
+        let birthYear = x.birthdate.slice(-4)
+        // console.log(birthYear)
+        text += x
+        if (Number(birthYear) < 1990) {
+            console.log (name + ' was born before 1990')
+            // return true
+        }
+    }
 }
+olderThanGenZ(arrayOfPersons)
+
+// Use .filter() to filter the persons array and console.log only people that were born before Jan 1, 1990
+const Older = arrayOfPersons.filter(person => (Number(person.birthdate.slice(-4)) < 1990 ))
+console.log(Older)
+
+
+// BONUS - Create a function that returns true if the date passed to it is >= 21 years in the past.
+function old(data) {
+    let currentTime = new Date()
+    let thisYear = currentTime.getFullYear()   
+    if (Number(data) <= thisYear - 21) {
+        return true
+    } else {return false}
+}
+console.log(old(1900))
+console.log(old(2019))
+
+// BONUS - .filter() out the people in the array who are younger than 21.
+// let yearOfBirth  = Number(person.birthdate.slice(-4))
+let currentTime = new Date()
+let thisYear = currentTime.getFullYear()  
+const youngerThan21 = arrayOfPersons.filter(person => (Number(person.birthdate.slice(-4)) >= thisYear -21))
+console.log(youngerThan21)
+// const maleOnly = arrayOfPersons.filter(person => (person.gender == 'male'))
+// console.log(maleOnly)
