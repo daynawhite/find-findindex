@@ -74,18 +74,11 @@ const maleOnly = arrayOfPersons.filter(person => (person.gender == 'male'))
 console.log(maleOnly)
 
 // Create a function that returns true if the value of birthDate is before Jan 1, 1990.
-// THIS ONE STUMPED ME.  I WANT TO KNOW HOW TO PERFORM THE IF...THEN FOR A PARTICULAR OBJECT IN THE ARRAY (RATHER THAN FILTERING WITH THE FOR...OF LOOP), 
-// BUT I DON'T KNOW HOW TO SPECIFY AN OBJECT.
-function olderThanGenZ(arrayOfPersons) {
-    let text = ''
-    for (let x of arrayOfPersons) {
-        let name = x.firstName
-        let birthYear = x.birthdate.slice(-4)
-        // console.log(birthYear)
-        text += x
+function olderThanGenZ(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let birthYear = arr[i].birthdate.slice(-4)
         if (Number(birthYear) < 1990) {
-            console.log (name + ' was born before 1990')
-            // return true
+            console.log (arr[i].firstName + ' was born before 1990')
         }
     }
 }
